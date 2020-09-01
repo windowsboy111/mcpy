@@ -1,2 +1,2 @@
 # mcpy
-Minecraft unofficial Python Edition
+just a repo for my 3d graphics testing
