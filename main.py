@@ -1,5 +1,10 @@
 import tkinter as tk
-import os,draw,sys,os,platform,time
+import os
+import draw
+import sys
+import os
+import platform
+import time
 from constant import *
 
 item = {
@@ -15,8 +20,9 @@ moves = {
     's': False
 }
 
+
 def kp(event):
-    global root,moves
+    global root, moves
     if event.keysym == "Escape":
         root.destroy()
         quit()
@@ -29,6 +35,8 @@ def kp(event):
         moves['a'] = True
     if event.keysym == 'd':
         moves['d'] = True
+
+
 def kr(event):
     global moves
     if event.keysym == 'w':
@@ -40,8 +48,9 @@ def kr(event):
     if event.keysym == 'd':
         moves['d'] = False
 
+
 def main():
-    global moves,root,item
+    global moves, root, item
     root = tk.Tk()
     root.geometry(f'{WIN_WIDTH}x{WIN_HEIGHT}')
     root.title('tk3d test')
@@ -52,7 +61,7 @@ def main():
     while True:
         try:
             WIDTH = root.winfo_width()
-            HEIGHT= root.winfo_height()
+            HEIGHT = root.winfo_height()
             if moves['w']:
                 item['cube']['size'] += 1.005
                 # item['cube']['startx'] *= 1.01
@@ -66,16 +75,17 @@ def main():
                 # item['cube']['starty'] /= 1.01
                 item['cube']['starty'] /= 1.01
 
-            c = tk.Canvas(root,width=WIDTH, height=HEIGHT)
-            cube = draw.Cube(c,50,100,100,50,100,outline='#fff')
-            cube.up(20)
-            cube.place()
-            c.place(x=0,y=0)
-
+            c = tk.Canvas(root, width=WIDTH, height=HEIGHT)
+            cube = draw.Cube(c, draw.Coor3d(500, 500, 500), 100)
+            cube.place(fill='#000', outline='#fff')
+            print(cube.coor.x, cube.coor.y, cube.coor.z)
+            c.place(x=0, y=0)
 
             root.update()
             time.sleep(0.005)
         except tk._tkinter.TclError:
             return 0
+
+
 if __name__ == "__main__":
     main()
